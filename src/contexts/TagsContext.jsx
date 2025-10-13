@@ -9,7 +9,7 @@ export const TagsProvider = ({ children }) => {
 
   const fetchTags = async () => {
     try {
-      const response = await fetch("http://localhost:3000/tags");
+      const response = await fetch("https://major-project2-backend-seven.vercel.app/tags");
       if (!response.ok) {
         throw new Error("Failed to fetch tags.");
       }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useFetch from "../../useFetch";
 
 const SalesAgentManagement = () => {
-  const { data, loading, error } = useFetch("http://localhost:3000/agents");
+  const { data, loading, error } = useFetch("https://major-project2-backend-seven.vercel.app/agents");
   console.log(data);
 
   return (
@@ -36,12 +36,11 @@ const SalesAgentManagement = () => {
             )}
           </div>
           <div className="add-agent">
-          <Link className="addAgent-btn" to="/addAgent">
-            Add New Agent
-          </Link>
+            <Link className="addAgent-btn" to="/addAgent">
+              Add New Agent
+            </Link>
+          </div>
         </div>
-        </div>
-        
       </div>
     </>
   );

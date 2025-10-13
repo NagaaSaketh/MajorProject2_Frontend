@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
 
 const AddLead = () => {
-  const { data, loading, error } = useFetch("http://localhost:3000/agents");
+  const { data, loading, error } = useFetch("https://major-project2-backend-seven.vercel.app/agents");
   const {
     data: tagsData,
     loading: tagsLoading,
     error: tagsError,
-  } = useFetch("http://localhost:3000/tags");
+  } = useFetch("https://major-project2-backend-seven.vercel.app/tags");
   const {
     createLead,
     setName,

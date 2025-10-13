@@ -26,7 +26,7 @@ const LeadViews = () => {
   const queryString = query.length != 0 ? `?${query.join("&")}` : "";
 
   const { data, loading, error } = useFetch(
-    `http://localhost:3000/leads/${queryString}`
+    `https://major-project2-backend-seven.vercel.app/leads/${queryString}`
   );
   console.log(data);
 

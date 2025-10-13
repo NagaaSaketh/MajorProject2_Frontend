@@ -12,7 +12,7 @@ export const CommentProvider = ({ children }) => {
   const fetchComments = async (leadId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/leads/${leadId}/comments`
+        `https://major-project2-backend-seven.vercel.app/leads/${leadId}/comments`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch comments");
@@ -30,7 +30,7 @@ export const CommentProvider = ({ children }) => {
         const commentData = {
             commentText : newComment
         }
-        const response = await fetch(`http://localhost:3000/leads/${leadId}/comments`,{
+        const response = await fetch(`https://major-project2-backend-seven.vercel.app/leads/${leadId}/comments`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",

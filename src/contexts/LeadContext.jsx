@@ -18,7 +18,7 @@ export const LeadProvider = ({ children }) => {
 
   const fetchAllLeads = async () => {
     try {
-      const response = await fetch("http://localhost:3000/leads");
+      const response = await fetch("https://major-project2-backend-seven.vercel.app/leads");
 
       if (!response.ok) {
         throw new Error("Failed to fetch leads");
@@ -66,7 +66,7 @@ export const LeadProvider = ({ children }) => {
       };
       console.log(leadData);
 
-      const response = await fetch("http://localhost:3000/leads", {
+      const response = await fetch("https://major-project2-backend-seven.vercel.app/leads", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +132,7 @@ export const LeadProvider = ({ children }) => {
       console.log(updatedLead);
 
       const response = await fetch(
-        `http://localhost:3000/leads/${leadData._id}`,
+        `https://major-project2-backend-seven.vercel.app/leads/${leadData._id}`,
         {
           method: "PUT",
           headers: {
@@ -171,7 +171,7 @@ export const LeadProvider = ({ children }) => {
 
   const getDetails = async (leadId) => {
     try {
-      const response = await fetch(`http://localhost:3000/lead/${leadId}`);
+      const response = await fetch(`https://major-project2-backend-seven.vercel.app/lead/${leadId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch lead details");
       }
@@ -185,7 +185,7 @@ export const LeadProvider = ({ children }) => {
 
   const deleteLead = async (leadId) => {
     try {
-      const response = await fetch(`http://localhost:3000/leads/${leadId}`, {
+      const response = await fetch(`https://major-project2-backend-seven.vercel.app/leads/${leadId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

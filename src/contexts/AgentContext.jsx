@@ -13,7 +13,7 @@ export const AgentProvider = ({ children }) => {
 
   const fetchAllAgents = async () => {
     try {
-      const response = await fetch("http://localhost:3000/agents");
+      const response = await fetch("https://major-project2-backend-seven.vercel.app/agents");
       if (!response.ok) {
         throw new Error("Failed to fetch agents");
       }
@@ -42,7 +42,7 @@ export const AgentProvider = ({ children }) => {
       };
       console.log(leadData);
 
-      const response = await fetch("http://localhost:3000/agents", {
+      const response = await fetch("https://major-project2-backend-seven.vercel.app/agents", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ export const AgentProvider = ({ children }) => {
 
   const deleteAgent = async (agentId) => {
     try {
-      const response = await fetch(`http://localhost:3000/agents/${agentId}`, {
+      const response = await fetch(`https://major-project2-backend-seven.vercel.app/agents/${agentId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

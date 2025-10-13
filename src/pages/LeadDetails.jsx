@@ -15,7 +15,7 @@ const LeadDetails = () => {
 
 
   const { data, loading, error } = useFetch(
-    `http://localhost:3000/lead/${leadId}`
+    `https://major-project2-backend-seven.vercel.app/lead/${leadId}`
   );
 
   useEffect(() => {

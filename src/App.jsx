@@ -4,7 +4,7 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const { data, loading, error } = useFetch("http://localhost:3000/leads");
+  const { data, loading, error } = useFetch("https://major-project2-backend-seven.vercel.app/leads");
   console.log(data);
 
   const [selectedStatus, setSelectedStatus] = useState("");

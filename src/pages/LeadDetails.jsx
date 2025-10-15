@@ -11,8 +11,12 @@ const LeadDetails = () => {
   const { editDetails, getDetails } = useLeadContext();
   const { agents } = useAgentContext();
 
-  const [leadData, setLeadData] = useState(null);
+  const [agent, setAgent] = useState("");
 
+
+  // console.log(agents);
+
+  const [leadData, setLeadData] = useState(null);
 
   const { data, loading, error } = useFetch(
     `https://major-project2-backend-seven.vercel.app/lead/${leadId}`
@@ -42,6 +46,24 @@ const LeadDetails = () => {
     fetchComments(leadId);
   }, [leadId]);
 
+   useEffect(() => {
+    console.log("Comments state updated:", comments);
+  }, [comments]);
+
+  useEffect(() => {
+    if (isModalOpen && leadData) {
+      setFormData({
+        name: leadData.name || "",
+        source: leadData.source || "",
+        salesAgent: leadData.salesAgent?._id || "",
+        status: leadData.status || "",
+        priority: leadData.priority || "",
+        timeToClose: leadData.timeToClose || 0,
+        tags: leadData.tags || [],
+      });
+    }
+  }, [isModalOpen, leadData]);
+
   const handleChange = (name, value) => {
     setFormData((prev) => ({
       ...prev,
@@ -67,6 +89,14 @@ const LeadDetails = () => {
 
     setIsModalOpen(false);
   };
+
+   const handleCommentSubmit = async () => {
+    console.log("Submitting comment with agentId:", agent);
+    await postComment(leadId, agent);
+    setAgent(""); // Clear agent selection after submitting
+  };
+
+  
 
   return (
     <>
@@ -108,7 +138,7 @@ const LeadDetails = () => {
               {comments && comments.length > 0 ? (
                 <>
                   {comments.map((comment) => (
-                    <div key={comment._id}>
+                    <div key={comment.id}>
                       <p>
                         Author: {comment.author} -{" "}
                         {new Date(comment.createdAt).toLocaleString()}{" "}
@@ -124,6 +154,25 @@ const LeadDetails = () => {
             </div>
             <div className="addComment-section">
               <h3>Add New Comment</h3>
+              <label htmlFor="agents">Select Agent:</label>
+              {agents && agents.length > 0 ? (
+                <>
+                  {agents.map((agentItem) => (
+                    <label key={agentItem._id} className="agent-radio">
+                      <input
+                        type="radio"
+                        name="agents"
+                        value={agentItem._id}
+                        checked={agent==agentItem._id}
+                        onChange={(e) => setAgent(e.target.value)}
+                      />
+                      {agentItem.name}
+                    </label>
+                  ))}
+                </>
+              ) : (
+                <p>No Agents found</p>
+              )}
               <label htmlFor="addComment"></label>
               <input
                 value={newComment}
@@ -134,7 +183,7 @@ const LeadDetails = () => {
               />
               <button
                 className="addComment-btn"
-                onClick={() => postComment(leadId)}
+                onClick={handleCommentSubmit}
               >
                 Submit Comment
               </button>
@@ -168,6 +217,7 @@ const LeadDetails = () => {
               <div className="modal-form-group">
                 <label>Lead Source:</label>
                 <select
+                  value={formData.source}
                   onChange={(e) => handleChange("source", e.target.value)}
                   id="source"
                 >
@@ -184,6 +234,7 @@ const LeadDetails = () => {
               <div className="modal-form-group">
                 <label>Sales Agent:</label>
                 <select
+                  value={formData.salesAgent}
                   onChange={(e) => handleChange("salesAgent", e.target.value)}
                   id="agents"
                 >
@@ -203,6 +254,7 @@ const LeadDetails = () => {
               <div className="modal-form-group">
                 <label>Status:</label>
                 <select
+                  value={formData.status}
                   onChange={(e) => handleChange("status", e.target.value)}
                   id="status"
                 >
@@ -218,6 +270,7 @@ const LeadDetails = () => {
               <div className="modal-form-group">
                 <label>Priority:</label>
                 <select
+                  value={formData.priority}
                   onChange={(e) => handleChange("priority", e.target.value)}
                 >
                   <option value="">Select Priority</option>

@@ -26,10 +26,6 @@ export const CommentProvider = ({ children }) => {
   };
 
   const postComment = async (leadId, agentId) => {
-    console.log("leadId:", leadId);
-    console.log("agentId:", agentId);
-    console.log("newComment:", newComment);
-
     try {
       if (!agentId) {
         toast.error("Please select an agent");
@@ -39,12 +35,6 @@ export const CommentProvider = ({ children }) => {
         author: agentId,
         commentText: newComment,
       };
-
-      console.log("=== FRONTEND: Posting comment ===");
-      console.log("Lead ID:", leadId);
-      console.log("Agent ID:", agentId);
-      console.log("Comment Data:", commentData);
-      console.log("API URL:", `https://major-project2-backend-seven.vercel.app/leads/${leadId}/comments`);
       const response = await fetch(
         `https://major-project2-backend-seven.vercel.app/leads/${leadId}/comments`,
         {
@@ -55,17 +45,13 @@ export const CommentProvider = ({ children }) => {
           body: JSON.stringify(commentData),
         }
       );
-      console.log("Response status:", response.status);
-      console.log("Response ok:", response.ok);
       if (!response.ok) {
         throw new Error("Failed to add comment");
       }
       const data = await response.json();
-      console.log("=== BACKEND RESPONSE ===");
-      console.log("Comment response data:", data);
-      console.log("Author in response:", data.author);
       setNewComment("");
       await fetchComments(leadId);
+
       console.log("Added Comment:", data);
       toast.success("Comment Added Successfully.");
     } catch (err) {

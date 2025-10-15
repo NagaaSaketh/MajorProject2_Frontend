@@ -46,10 +46,6 @@ const LeadDetails = () => {
     fetchComments(leadId);
   }, [leadId]);
 
-   useEffect(() => {
-    console.log("Comments state updated:", comments);
-  }, [comments]);
-
   useEffect(() => {
     if (isModalOpen && leadData) {
       setFormData({
@@ -91,9 +87,8 @@ const LeadDetails = () => {
   };
 
    const handleCommentSubmit = async () => {
-    console.log("Submitting comment with agentId:", agent);
     await postComment(leadId, agent);
-    setAgent(""); // Clear agent selection after submitting
+    setAgent("");
   };
 
   
@@ -120,7 +115,7 @@ const LeadDetails = () => {
               ) : leadData ? (
                 <div className="lead-desc">
                   <p>Lead Name: {leadData?.name} </p>
-                  <p>Sales Agent: {leadData?.salesAgent.name} </p>
+                  <p>Sales Agent: {leadData?.salesAgent?.name} </p>
                   <p>Lead Source: {leadData?.source} </p>
                   <p>Status: {leadData?.status} </p>
                   <p>Priority: {leadData?.priority} </p>

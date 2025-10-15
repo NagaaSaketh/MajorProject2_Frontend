@@ -527,6 +527,55 @@ body {
   border-radius: 6px;
   width: 300px;
 }
+.agents-comments-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.agent-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.agent-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--secondary-color);
+  /* background-color: white; */
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.agent-radio:hover {
+  background-color: white;
+}
+
+.agent-radio input[type="radio"] {
+  width: 16px;
+  height: 16px;
+}
+
+.agent-name {
+  font-size: 15px;
+}
+
+.no-agents {
+  font-size: 0.9rem;
+  color: black;
+}
 
 .modal-overlay {
   position: fixed;

@@ -149,9 +149,10 @@ const LeadDetails = () => {
             </div>
             <div className="addComment-section">
               <h3>Add New Comment</h3>
-              <label htmlFor="agents">Select Agent:</label>
+              <div className="agents-comments-section">
+              <label htmlFor="agents" className="section-title">Select Agent:</label>
               {agents && agents.length > 0 ? (
-                <>
+                <div className="agent-options">
                   {agents.map((agentItem) => (
                     <label key={agentItem._id} className="agent-radio">
                       <input
@@ -161,13 +162,14 @@ const LeadDetails = () => {
                         checked={agent==agentItem._id}
                         onChange={(e) => setAgent(e.target.value)}
                       />
-                      {agentItem.name}
+                      <span className="agent-name">{agentItem.name}</span>
                     </label>
                   ))}
-                </>
+                </div>
               ) : (
-                <p>No Agents found</p>
+                <p className="no-agents">No Agents found</p>
               )}
+              </div>
               <label htmlFor="addComment"></label>
               <input
                 value={newComment}

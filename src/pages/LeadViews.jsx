@@ -198,7 +198,7 @@ const LeadViews = () => {
                   <h3>
                     {index + 1}. {lead.name}
                   </h3>
-                  <p>Assigned Sales Agent: {lead.salesAgent.name}</p>
+                  <p>Assigned Sales Agent: {lead.salesAgent?.name}</p>
                   <p>Estimated Time to close: {lead.timeToClose} days </p>
                   <p>Priority: {lead.priority} </p>
                 </div>

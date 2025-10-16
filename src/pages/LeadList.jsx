@@ -84,7 +84,7 @@ const LeadList = () => {
             >
               <option value="All">Select agent</option>
               {agents?.map((agent) => (
-                <option key={agent._id} value={agent.name}>
+                <option key={agent._id} value={agent?.name}>
                   {agent.name}
                 </option>
               ))}
@@ -163,7 +163,7 @@ const LeadList = () => {
                     {index + 1}. {lead.name}
                   </h3>
                   <p>Lead status: {lead.status} </p>
-                  <p>Agent: {lead.salesAgent.name} </p>
+                  <p>Agent: {lead.salesAgent?.name} </p>
                   <p>Priority: {lead.priority} </p>
                   <hr />
                 </div>

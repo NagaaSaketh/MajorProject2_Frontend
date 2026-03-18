@@ -30,7 +30,8 @@ export const AgentProvider = ({ children }) => {
         setAgents(agents);
       })
       .catch((err) => {
-        setError(err.message);
+        console.error(err.message);
+        throw err;
       });
   }, []);
   const createAgent = async (e) => {

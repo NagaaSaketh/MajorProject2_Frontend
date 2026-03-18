@@ -7,21 +7,23 @@ function App() {
   const { data, loading, error } = useFetch("https://major-project2-backend-seven.vercel.app/leads");
   console.log(data);
 
+  const leads = Array.isArray(data) ? data : [];
+
   const [selectedStatus, setSelectedStatus] = useState("");
 
   let newStatusCount =
-    data?.filter((lead) => lead.status === "New").length || 0;
+    leads?.filter((lead) => lead.status === "New").length || 0;
   let contactStatusCount =
-    data?.filter((lead) => lead.status === "Contacted").length || 0;
+    leads?.filter((lead) => lead.status === "Contacted").length || 0;
   let qualifiedStatusCount =
-    data?.filter((lead) => lead.status === "Qualified").length || 0;
+    leads?.filter((lead) => lead.status === "Qualified").length || 0;
   let proposalSentStatusCount =
-    data?.filter((lead) => lead.status === "Proposal Sent").length || 0;
+    leads?.filter((lead) => lead.status === "Proposal Sent").length || 0;
   let closedStatusCount =
-    data?.filter((lead) => lead.status === "Closed").length || 0;
+    leads?.filter((lead) => lead.status === "Closed").length || 0;
 
   const filteredLeads = selectedStatus
-    ? data?.filter((lead) => lead.status === selectedStatus)
+    ? leads?.filter((lead) => lead.status === selectedStatus)
     : [];
 
   return (

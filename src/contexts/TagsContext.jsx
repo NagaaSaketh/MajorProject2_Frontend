@@ -26,7 +26,7 @@ export const TagsProvider = ({ children }) => {
         setTags(tags);
       })
       .catch((err) => {
-        setError(err.message);
+        console.error(err.message);
       });
   }, []);
 
